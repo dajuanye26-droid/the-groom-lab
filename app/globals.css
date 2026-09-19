@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+:root {
+  --color-cream: #fbf5ec;
+  --color-cream-deep: #f3e7d3;
+  --color-paper: #fffdf9;
+  --color-ink: #211a14;
+  --color-ink-soft: #4a4038;
+  --color-espresso: #2c2118;
+  --color-gold: #b8925a;
+  --color-gold-soft: #d9b98a;
+  --color-gold-deep: #8b6b3d;
+  --color-teal: #3e6e64;
+  --color-teal-deep: #2b4d46;
+  --shadow-soft: 0 20px 60px -20px rgba(33, 26, 20, 0.35);
+}
+
+@theme inline {
+  --color-cream: var(--color-cream);
+  --color-cream-deep: var(--color-cream-deep);
+  --color-paper: var(--color-paper);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-espresso: var(--color-espresso);
+  --color-gold: var(--color-gold);
+  --color-gold-soft: var(--color-gold-soft);
+  --color-gold-deep: var(--color-gold-deep);
+  --color-teal: var(--color-teal);
+  --color-teal-deep: var(--color-teal-deep);
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-manrope);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+::selection {
+  background: var(--color-gold-soft);
+  color: var(--color-espresso);
+}
+
+@keyframes bloom-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(6%, 8%) scale(1.12); }
+}
+
+@keyframes bloom-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-8%, -6%) scale(1.15); }
+}
+
+@keyframes paw-drift {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-140px) rotate(18deg); opacity: 0; }
+}
+
+.hero-bloom {
+  animation: bloom-drift-1 16s ease-in-out infinite;
+}
+
+.hero-bloom-2 {
+  animation: bloom-drift-2 20s ease-in-out infinite;
+}
+
+.paw-drift {
+  animation: paw-drift linear infinite;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise-in {
+  opacity: 0;
+  animation: rise-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise-in {
+    opacity: 1;
+    animation: none;
+    transform: none;
+  }
+}
