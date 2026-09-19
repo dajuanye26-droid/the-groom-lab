@@ -30,10 +30,13 @@ export function Hero() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(44,33,24,0)_0%,rgba(30,23,17,0.85)_100%)]" />
       </Parallax>
 
-      {/* Layer 2 — mid depth: drifting paw prints */}
+      {/* Layer 2 — mid depth: drifting paw prints + rising bath bubbles */}
       <Parallax speed={90} className="pointer-events-none absolute inset-0 hidden sm:block">
         <PawField />
       </Parallax>
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <BubbleField />
+      </div>
 
       {/* Layer 3 — foreground content */}
       <Parallax speed={-16} className="relative z-10 mx-auto w-full max-w-6xl px-5 sm:px-8">
@@ -52,7 +55,7 @@ export function Hero() {
           >
             Luxury Dog Grooming,
             <br />
-            <span className="text-gold-soft">Delivered to Your Door.</span>
+            <span className="shimmer-text">Delivered to Your Door.</span>
           </h1>
 
           <p
@@ -73,7 +76,7 @@ export function Hero() {
               href={site.bookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full bg-gold px-7 py-3.5 text-center text-sm font-semibold text-espresso shadow-soft transition-transform hover:-translate-y-0.5 hover:bg-gold-soft"
+              className="cta-glow rounded-full bg-gold px-7 py-3.5 text-center text-sm font-semibold text-espresso shadow-soft transition-transform hover:-translate-y-0.5 hover:bg-gold-soft"
             >
               Book Now
             </a>
@@ -104,6 +107,37 @@ export function Hero() {
 
       <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-cream to-transparent" />
     </section>
+  );
+}
+
+function BubbleField() {
+  const bubbles = [
+    { left: "8%", size: 10, delay: 0, duration: 14 },
+    { left: "18%", size: 16, delay: 3, duration: 18 },
+    { left: "28%", size: 7, delay: 6, duration: 12 },
+    { left: "45%", size: 13, delay: 2, duration: 16 },
+    { left: "58%", size: 9, delay: 8, duration: 15 },
+    { left: "70%", size: 18, delay: 5, duration: 20 },
+    { left: "82%", size: 8, delay: 1, duration: 13 },
+    { left: "92%", size: 12, delay: 7, duration: 17 },
+  ];
+
+  return (
+    <>
+      {bubbles.map((bubble, i) => (
+        <span
+          key={i}
+          className="bubble-rise absolute bottom-0 rounded-full border border-gold-soft/30 bg-gradient-to-br from-cream/20 to-transparent"
+          style={{
+            left: bubble.left,
+            width: bubble.size,
+            height: bubble.size,
+            animationDelay: `${bubble.delay}s`,
+            animationDuration: `${bubble.duration}s`,
+          }}
+        />
+      ))}
+    </>
   );
 }
 
